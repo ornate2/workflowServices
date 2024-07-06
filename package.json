@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.16.0",
+    "@sap-cloud-sdk/resilience": "^3.16.0",
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^3.6.1",
@@ -27,7 +29,7 @@
         "kind": "odata",
         "credentials": {
           "destination": "WS1",
-          "path": "/sap/opu/odata/sap/"
+          "path": "/sap/opu/odata/sap"
         }
       },
       "db": "hana",

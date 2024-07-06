@@ -40,9 +40,13 @@ function scheduleJob() {
         console.log('Cron job is running every 20 seconds!');
 
         try {
-            const tx = cds.tx();
-            await tx.run(SELECT.from('POService.fetchData'));
-            await tx.commit();
+            // const tx = cds.tx();
+            // await tx.run(SELECT.from('POService.fetchData'));
+            // await tx.commit();
+
+            const srv = await cds.connect.to('POService');
+            await srv.tx().send('fetchData');
+            console.log("success!")
         } catch (error) {
             console.error('Something went wrong. Scheduled task failed:', error);
             throw error;
