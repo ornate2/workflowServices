@@ -1,0 +1,3 @@
+service POService {
+    action fetchData();
+}

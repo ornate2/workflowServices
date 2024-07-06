@@ -1,0 +1,37 @@
+{
+  "name": "workflowServices",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3.6.1",
+    "express": "^4",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-cds": "^3",
+    "eslint": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "WiproOdata": {
+        "kind": "odata",
+        "credentials": {
+          "destination": "WS1",
+          "path": "/sap/opu/odata/sap/"
+        }
+      },
+      "db": "hana",
+      "auth": "xsuaa"
+    }
+  }
+}
