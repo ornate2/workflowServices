@@ -1,39 +1,49 @@
 {
-  "name": "workflowServices",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap-cloud-sdk/http-client": "^3.16.0",
-    "@sap-cloud-sdk/resilience": "^3.16.0",
-    "@sap/cds": "^7",
-    "@sap/cds-hana": "^2",
-    "@sap/xssec": "^3.6.1",
-    "express": "^4",
-    "node-cron": "^3.0.3"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7",
-    "@sap/eslint-plugin-cds": "^3",
-    "eslint": "^9"
-  },
-  "scripts": {
-    "start": "cds-serve"
-  },
-  "cds": {
-    "requires": {
-      "WiproOdata": {
-        "kind": "odata",
-        "credentials": {
-          "destination": "WS1",
-          "path": "/sap/opu/odata/sap"
+    "name": "workflowServices",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/http-client": "^3.16.0",
+        "@sap-cloud-sdk/resilience": "^3.16.0",
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/xssec": "^3.6.1",
+        "express": "^4",
+        "node-cron": "^3.0.3"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/eslint-plugin-cds": "^3",
+        "eslint": "^9",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "undeploy": "cf undeploy workflowServices --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "requires": {
+            "WiproOdata": {
+                "kind": "odata",
+                "credentials": {
+                    "destination": "WS1",
+                    "path": "/sap/opu/odata/sap"
+                }
+            },
+            "workflow": {
+                "kind": "rest",
+                "credentials": {
+                    "destination": "sap_process_automation_service"
+                }
+            },
+            "db": "hana",
+            "auth": "xsuaa"
         }
-      },
-      "db": "hana",
-      "auth": "xsuaa"
     }
-  }
 }

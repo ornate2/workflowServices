@@ -1,0 +1,205 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "poformdata.workflowuimodule",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.4",
+            "toolsId": "f9060d3b-11a1-47d5-a85c-0785187da1dc"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZMM_PO_SAVING_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.82.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "poformdata.workflowuimodule.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "poformdata.workflowuimodule.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RoutePOForm",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetPOForm"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetPOForm": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "POForm",
+                    "viewName": "POForm"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "poformdata.workflowuimodule.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "workflow_srv"
+    },
+    "sap.bpa.task": {
+        "_version": "1.0.0",
+        "outcomes": [
+            {
+                "id": "approve",
+                "label": "Approve"
+            },
+            {
+                "id": "reject",
+                "label": "Reject"
+            }
+        ],
+        "inputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "input",
+            "type": "object",
+            "required": [
+                "PONumber",
+                "POValue",
+                "POCurrency",
+                "VendorName",
+                "Vendor",
+                "StartDate",
+                "EndDate"
+            ],
+            "properties": {
+                "PONumber": {
+                    "type": "string",
+                    "title": "PO No",
+                    "description": "PO Number"
+                },
+                "POValue": {
+                    "type": "string",
+                    "title": "PO Value with Currency",
+                    "description": "PO Value with Currency"
+                },
+                "POCurrency": {
+                    "type": "string",
+                    "title": "PO Currency",
+                    "description": "PO Currency"
+                },
+                "VendorName": {
+                    "type": "string",
+                    "title": "VendorName",
+                    "description": "Vendor Name"
+                },
+                "Vendor": {
+                    "type": "string",
+                    "title": "Vendor",
+                    "description": "Vendor data"
+                },
+                "StartDate": {
+                    "type": "string",
+                    "title": "StartDate",
+                    "description": "Start Date"
+                },
+                "EndDate": {
+                    "type": "string",
+                    "title": "EndDate",
+                    "description": "End Date"
+                }
+            }
+        },
+        "outputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "output",
+            "type": "object",
+            "required": [
+                "comment"
+            ],
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "title": "Comment",
+                    "description": "Comment to buyer"
+                }
+            }
+        },
+        "category": "approval"
+    }
+}
