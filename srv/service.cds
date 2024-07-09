@@ -29,6 +29,7 @@ service POService {
         StartDate: String;
         EndDate: String;
         VendorName: String;
+        TriggerStatus: String;
     }
 
     entity SavingsPOSet as projection on SavingsPO;

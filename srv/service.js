@@ -17,7 +17,7 @@ async function fetchData(req) {
         const odataService = await cds.connect.to('WiproOdata');
         const response = await odataService.send({
             method: 'GET',
-            path: '/ZMM_PO_SAVING_SRV/SavingsPOSet'
+            path: '/ZMM_PO_SAVING_SRV/SavingsPOSet?$filter=TriggerStatus eq `NotTriggered`'
         });
 
         const poData = response;
@@ -27,7 +27,7 @@ async function fetchData(req) {
             console.log("Triggering workflow for PO:", po.PONumber);
             await triggerWorkflow(po);
             console.log("Updating SAP with trigger status for PO:", po.PONumber);
-            //await updateSAP(po.PONumber, 'Triggered');
+            // await updateSAP(po.PONumber, 'Triggered');
         }
 
         return 'Workflows triggered successfully';
@@ -67,7 +67,8 @@ async function triggerWorkflow(po) {
             VendorName: po.VendorName,
             Vendor: po.Vendor,
             StartDate: po.StartDate,
-            EndDate: po.EndDate
+            EndDate: po.EndDate,
+            TriggerStatus: ""
         };
 
         let data = {
@@ -81,7 +82,8 @@ async function triggerWorkflow(po) {
         const wfResponse = await service2.send({ method: 'POST', path: "/workflow/rest/v1/workflow-instances", data: data });
 
         console.log('WF Res:', wfResponse);
-         
+        return `Workflow triggered successfully for PO ${po.PONumber}`;
+
          
     } catch (error) {
         console.error(`Error triggering workflow for PO ${po.PONumber}:`, error);
@@ -107,7 +109,7 @@ async function updateSAP(poNumber, status) {
 
 
 function scheduleJob() {
-    cron.schedule('0 0 * * * *', async () => {
+    cron.schedule('*/20 * * * * *', async () => {
         console.log('Cron job is running every 20 seconds!');
 
         try {

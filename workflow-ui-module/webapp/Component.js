@@ -112,11 +112,12 @@ sap.ui.define(
         },
         completeDataTask: function(){
       var data =  this.getModel("context").getData();
-        if(data === ""){
-          var text = this.getView().getModel("i18n").getResourceBundle().getText("RefershText");
-	    	  var Confirmation = this.getView().getModel("i18n").getResourceBundle().getText("Confirmation");
-	    	  var btnOk = this.getView().getModel("i18n").getResourceBundle().getText("btnOk");
-	    	  var btnCancel = this.getView().getModel("i18n").getResourceBundle().getText("btnCancel");
+      var data_po = data.POCurrency;
+        if(data_po === ""){
+          var text = "RefershText";
+	    	  var Confirmation = "Confirmation";
+	    	  var btnOk = "ok";
+	    	  var btnCancel = "Cancel";
 	    	  
 	    	  var informationDialog = new Dialog({
 	                title: Confirmation,

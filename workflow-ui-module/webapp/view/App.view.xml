@@ -125,25 +125,27 @@
                                     <core:Title text="" class="remove-space" />
 
                                     
-                            <Label text="{i18n>LastYPONO}"
+                            <Label text="{i18n>LastYPONO}"  required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="po_no" maxLength="50" value="{context>/LastYearPONo}"></Input>
-                                        <Label text="{i18n>LastYPOValue}" 
+                                        <Label text="{i18n>LastYPOValue}"   required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="po_value" maxLength="50" value="{context>/LastYearPOValue}"></Input>
-                                    <Label text="{i18n>LastYPOCurr}" 
+                                    <Label text="{i18n>LastYPOCurr}"  required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="po_Currency" maxLength="50" value="{context>/LastYearPOCurr}"></Input>
 
                                         <Label text="{i18n>Attachment}" 
                                         class="sapMLabelNoText" />
-                                        	<u:FileUploader
+                                    <u:FileUploader
 			id="fileUploader"
 			name="myFileUpload"
 			uploadUrl="upload/"
 			tooltip="Upload your file to the local server"
 			uploadComplete="handleUploadComplete"/>
-                                    <!-- <Input id="Attachment" maxLength="50" value="{context>/Attachment}"></Input> -->
+		<!-- <Button
+			text="Upload File" visible="false"
+			press="handleUploadPress"/> -->
 
                             <Label text="{i18n>Qvalue}"
                                         class="sapMLabelNoText" />
@@ -176,9 +178,9 @@
                                         <CheckBox text="{i18n>SavingDistribution}"   id="savingdistribution" editable="true"
 										class="attached" selected="{context>/SavingsDistribution}" select="onClick"   width="140px" />
                                     <!-- <Input id="po_Savings_Distribution" maxLength="50" enabled="true" visible="true"></Input> -->
-                                     <Label text="{i18n>BFMValid}" 
+                                     <Label text="{i18n>BFMValid}"  required="true"
                                         class="sapMLabelNoText" />
-                                        <Input id="bfmValidation" maxLength="50" value="{context>/BFMValidation}"></Input>
+                                        <Input id="bfmValidation" maxLength="50"  value="{context>/BFMValidation}"></Input>
                                    
                                         <Label text="{i18n>YOYSav}" required="true"
                                         class="sapMLabelNoText" />
