@@ -28,10 +28,12 @@ sap.ui.define(
           };
           var oModel = new sap.ui.model.json.JSONModel(data);
           this.getView().setModel(oModel, "TableModel");
+
+
         },
-        handleChangeEnd: function(oEvent){
+        onAfterRendering: function(oEvent){
                
-          var startDate =  this.getView().byId("Saving_start").getDateValue ();
+          var startDate =  this.getView().byId("Saving_start").getDateValue();
           var endDate =  this.getView().byId("Saving_End").getDateValue();
   
   if (startDate && endDate) { // Check if dates are valid
@@ -40,16 +42,16 @@ sap.ui.define(
   
       var table = this.getView().byId("table_column");
   
-      if (diffD < 90) {
+      if (diffD === 90) {
           table.setVisibleRowCount(1);
           table.setVisible(true);
-      } else if (diffD < 180) {
+      } else if (diffD >= 91 &&  diffD <= 179 ) {
           table.setVisibleRowCount(2);
           table.setVisible(true);
-      } else if (diffD < 270) {
+      } else if (diffD >= 180 &&  diffD <= 269) {
           table.setVisibleRowCount(3);
           table.setVisible(true);
-      }else if (diffD < 360) {
+      }else if (diffD >= 270 &&  diffD <= 359) {
           table.setVisibleRowCount(4);
           table.setVisible(true);
       } else {

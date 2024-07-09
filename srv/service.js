@@ -64,7 +64,10 @@ async function triggerWorkflow(po) {
             Buyer: po.Buyer,
             POValue: po.POValue,
             POCurrency: po.POCurrency,
-            VendorName: po.VendorName
+            VendorName: po.VendorName,
+            Vendor: po.Vendor,
+            StartDate: po.StartDate,
+            EndDate: po.EndDate
         };
 
         let data = {
@@ -75,38 +78,11 @@ async function triggerWorkflow(po) {
         //let wfPayload = JSON.stringify(data);
         //console.info('WF Payload:', wfPayload);
 
-        const wfResponse = await service2.send({ method: 'POST', path: "/rest/v1/workflow-instances", data: data });
+        const wfResponse = await service2.send({ method: 'POST', path: "/workflow/rest/v1/workflow-instances", data: data });
 
         console.log('WF Res:', wfResponse);
          
          
-        /*service2.tx(req).send({ method: 'POST', path: "/rest/v1/workflow-instances", data }).then((res) => {
-            console.log(res);
-            console.log("Instance " + res.id + " Created Successfully")
-     
-            //resolve(res);
-        })
-            .catch((err) => {
-                console.log("Workflow err:", err);
-                //handleResponseError(err)
-                //req.reject(err);
-            });*/
-
-        // const workflowUrl = 'https://<workflow-service-url>/workflow/rest/v1/workflows';
-        // const payload = {
-        //     definitionId: '',
-        //     context: {
-        //         poNumber: po.PONumber,
-        //     }
-        // };
-
-        // const response = await axios.post(workflowUrl, payload, {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     }
-        // });
-
-        //console.log(`Workflow triggered for PO ${po.PONumber}:`, response.data);
     } catch (error) {
         console.error(`Error triggering workflow for PO ${po.PONumber}:`, error);
         throw error;

@@ -126,6 +126,10 @@
         "_version": "1.0.0",
         "outcomes": [
             {
+                "id": "submitdata",
+                "label": "Submit"
+            },
+            {
                 "id": "approve",
                 "label": "Approve"
             },

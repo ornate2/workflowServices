@@ -3,8 +3,9 @@ sap.ui.define(
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
     "poformdata/workflowuimodule/model/models",
+    "sap/m/Dialog",
   ],
-  function (UIComponent, Device, models) {
+  function (UIComponent, Device, models, Dialog) {
     "use strict";
 
     return UIComponent.extend(
@@ -30,6 +31,17 @@ sap.ui.define(
           this.setModel(models.createDeviceModel(), "device");
 
           this.setTaskModels();
+          this.getInboxAPI().addAction(
+            {
+              action: "APPROVE",
+              label: "Submit",
+              type: "accept", // (Optional property) Define for positive appearance
+            },
+            function () {
+              this.completeDataTask(true);
+            },
+            this
+          );
 
           this.getInboxAPI().addAction(
             {
@@ -97,6 +109,42 @@ sap.ui.define(
           this.getModel("context").setProperty("/approved", approvalStatus);
           this._patchTaskInstance();
           this._refreshTaskList();
+        },
+        completeDataTask: function(){
+      var data =  this.getModel("context").getData();
+        if(data === ""){
+          var text = this.getView().getModel("i18n").getResourceBundle().getText("RefershText");
+	    	  var Confirmation = this.getView().getModel("i18n").getResourceBundle().getText("Confirmation");
+	    	  var btnOk = this.getView().getModel("i18n").getResourceBundle().getText("btnOk");
+	    	  var btnCancel = this.getView().getModel("i18n").getResourceBundle().getText("btnCancel");
+	    	  
+	    	  var informationDialog = new Dialog({
+	                title: Confirmation,
+	                type: 'Message',
+	                content: new sap.m.Text({
+	                    text: text
+	                }),
+	                beginButton: new sap.m.Button({
+	                    text: btnOk,
+	                    type: 'Emphasized',
+	                    press: function() {
+	                    	informationDialog.close();
+	                    	//this.SearchGetData();
+	                    }
+	                }),
+	                endButton: new sap.m.Button({
+	                    text: btnCancel,
+	                    type: 'Default',
+	                    press: function() {
+	                    	informationDialog.close();
+	                    }
+	                }),
+	                afterClose: function() {
+	                	informationDialog.destroy();
+	                }
+	            });
+				informationDialog.open();
+        }
         },
 
         _patchTaskInstance: function () {

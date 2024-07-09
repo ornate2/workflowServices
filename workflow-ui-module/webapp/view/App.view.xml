@@ -1,8 +1,8 @@
 <mvc:View controllerName="poformdata.workflowuimodule.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
-    xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"  xmlns:ta="sap.ui.table" xmlns:ui="sap.ui.table">
-    <App id="app">
+    xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"  xmlns:ta="sap.ui.table" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified">
+    <App id="app" height="90%">
      <pages>
              <Page >
         <content>
@@ -24,14 +24,14 @@
                                     <Label text="{i18n>CreateSFA}" required="true"
                                         class="sapMLabelNoText" />
                                     <ComboBox id="Create_Saving" 
-                                        change="NewCompanyCodeChange" items="">
-                                        <core:Item key="{context>/CreateSaving}" text="{context>/CreateSaving}" />
+                                        change="NewCompanyCodeChange" items="{context>/CreateSaving}">
+                                        <core:Item key="{context>CreateSaving}" text="{context>CreateSaving}" />
                                     </ComboBox>
                                     <Label text="{i18n>Cluster}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Cluster" 
-                                        change="NewCompanyCodeChange" items="">
-                                        <core:Item key="{context>/Cluster}" text="{context>/Cluster}" />
+                                        change="NewCompanyCodeChange" items="{context>/Cluster}">
+                                        <core:Item key="{context>Cluster}" text="{context>Cluster}" />
                                     </ComboBox>
                                     
                                     <Label text="{i18n>PONO}" required="true"
@@ -49,8 +49,8 @@
                                     <Label text="{i18n>Category}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Category_" 
-                                        change="NewCompanyCodeChange" items="">
-                                        <core:Item key="{context>/Category}" text="{context>/Category}" />
+                                        change="NewCompanyCodeChange" items="{context>/Category}">
+                                        <core:Item key="{context>Category}" text="{context>Category}" />
                                     </ComboBox>
                         <Label text="{i18n>ProjectDes}"
                                         class="sapMLabelNoText" />
@@ -74,24 +74,7 @@
                                     </DatePicker>
                                       <Label text=""
                                         class="sapMLabelNoText" />
-                                        <!-- <Table  id="table_column" items="{TableModel>/Tabledetails}">
-                                        <columns>
-                                        <Column >
-                                        <Text text="{i18n>Quarter}"></Text>
-                                        </Column>
-                                        <Column >
-                                        <Text text="{i18n>Saving}"></Text>
-                                        </Column>
-                                        </columns>
-                                        <items>
-                                        <ColumnListItem >
-                                        <cells>
-                                        <Text text="{TableModel>Quarter}"></Text>
-                                        <Text text="{TableModel>Saving}"></Text>
-                                        </cells>
-                                        </ColumnListItem>
-                                        </items>
-                                        </Table> -->
+                                       
                    <ui:Table
                  id="table_column"
                 rows="{TableModel>/Tabledetails}" visible="false" visibleRowCount="4"  selectionMode="None"  >
@@ -154,7 +137,13 @@
 
                                         <Label text="{i18n>Attachment}" 
                                         class="sapMLabelNoText" />
-                                    <Input id="Attachment" maxLength="50" value="{context>/Attachment}"></Input>
+                                        	<u:FileUploader
+			id="fileUploader"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"/>
+                                    <!-- <Input id="Attachment" maxLength="50" value="{context>/Attachment}"></Input> -->
 
                             <Label text="{i18n>Qvalue}"
                                         class="sapMLabelNoText" />
@@ -179,14 +168,14 @@
                                     <Label text="{i18n>SavingType}" 
                                         class="sapMLabelNoText" />
                                         <ComboBox id="saving_type" 
-                                        change="NewCompanyCodeChange" items="">
-                                        <core:Item key="{context>/SavingType}" text="{context>/SavingType}" />
+                                        change="NewCompanyCodeChange" items="{context>/SavingType}">
+                                        <core:Item key="{context>SavingType}" text="{context>SavingType}" />
                                     </ComboBox>
                                     <Label text=""
                                         class="sapMLabelNoText" />
                                         <CheckBox text="{i18n>SavingDistribution}"   id="savingdistribution" editable="true"
 										class="attached" selected="{context>/SavingsDistribution}" select="onClick"   width="140px" />
-                                    <Input id="po_Savings_Distribution" maxLength="50" enabled="true" visible="true"></Input>
+                                    <!-- <Input id="po_Savings_Distribution" maxLength="50" enabled="true" visible="true"></Input> -->
                                      <Label text="{i18n>BFMValid}" 
                                         class="sapMLabelNoText" />
                                         <Input id="bfmValidation" maxLength="50" value="{context>/BFMValidation}"></Input>
@@ -200,6 +189,19 @@
                     </items>
                 </IconTabBar>
          </content>
+         <!-- footer -->
+         <!-- <footer>
+					<OverflowToolbar>
+						<ToolbarSpacer />
+						<Button icon="sap-icon://curriculum"
+							text="{i18n>btnSubmit}" press="UpdateDocumentsPress"
+							class="buttonClass" type="Accept"></Button>
+						<Button icon="sap-icon://documents"
+							text="{i18n>btnReject}" press="ViewDocumentsPress"
+							type="Accept"></Button>
+						
+					</OverflowToolbar>
+				</footer> -->
     </Page>
         </pages>
     </App>
