@@ -113,8 +113,11 @@ sap.ui.define(
         completeDataTask: function(){
       var data =  this.getModel("context").getData();
       var data_po = data.POCurrency;
-        if(data_po === ""){
-          var text = "RefershText";
+      var data_CreateSaving = data.CreateSaving;
+      var data_BFMValidation = data.BFMValidation;
+      var data_po = data.YOYSavingFunction;
+        if(data_po === "" && data_CreateSaving === "" && data_BFMValidation === ""){
+          var text = "Please fill the mandatory field";
 	    	  var Confirmation = "Confirmation";
 	    	  var btnOk = "ok";
 	    	  var btnCancel = "Cancel";

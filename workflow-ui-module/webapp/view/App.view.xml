@@ -21,12 +21,13 @@
                                 <f:content>
                                     <core:Title text="" class="remove-space" />
                                 
-                                    <Label text="{i18n>CreateSFA}" required="true"
+                                      <Label text="{i18n>CreateSFA}" required="true"
                                         class="sapMLabelNoText" />
-                                    <ComboBox id="Create_Saving" 
-                                        change="NewCompanyCodeChange" items="{context>/CreateSaving}">
-                                        <core:Item key="{context>CreateSaving}" text="{context>CreateSaving}" />
-                                    </ComboBox>
+                                    <!-- <ComboBox id="Create_Saving"  editable="false"
+                                        change="NewCompanyCodeChange" items="{context>/PONumber}">
+                                        <core:Item key="{context>PONumber}" text="{context>CreateSaving}  {context>PONumber}" />
+                                    </ComboBox> -->
+                                      <Input id="Create_Saving" maxLength="50" value="{context>/CreateSaving}  {context>/PONumber}" editable="false"></Input>
                                     <Label text="{i18n>Cluster}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Cluster" 
@@ -37,9 +38,12 @@
                                     <Label text="{i18n>PONO}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="AssetTitleId" maxLength="50" value="{context>/PONumber}" editable="false"></Input>
-                                    <Label text="{i18n>POVCurr}" required="true"
+                                    <Label text="{i18n>POValue}" required="true"
                                         class="sapMLabelNoText" />
-                                    <Input id="Value_Currency" maxLength="50" editable="false" value="{context>/POValue} {context>/POCurrency}"></Input>
+                                    <Input id="POValue_" maxLength="50" editable="false" value="{context>/POValue}"></Input>
+                                     <Label text="{i18n>POCurrency}" required="true"
+                                        class="sapMLabelNoText" />
+                                    <Input id="POCurrency_" maxLength="50" editable="false" value="{context>/POCurrency}"></Input>
                                         <Label text="{i18n>VendorName}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="Vendor_Name" value="{context>/VendorName}" editable="false" maxLength="50"></Input>
@@ -151,12 +155,12 @@
                                         class="sapMLabelNoText" />
                                         <Input id="Quated" maxLength="50" value="{context>/QuatedValue}"></Input>
                                     
-                            <Label text="{i18n>Currency}" required="true"
+                            <!-- <Label text="{i18n>Currency}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Currency_po" 
                                         change="NewCompanyCodeChange" items="">
                                         <core:Item key="{context>/POCurrency}" text="{context>/POCurrency}" />
-                                    </ComboBox>
+                                    </ComboBox> -->
                                     <Label text="{i18n>OValue}"
                                         class="sapMLabelNoText" /> 
                                         <Input id="Order_Value" maxLength="50" value="{context>/OrderValue}"></Input>
