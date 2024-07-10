@@ -32,7 +32,7 @@
             "WiproOdata": {
                 "kind": "odata",
                 "credentials": {
-                    "destination": "WS1",
+                    "destination": "SavingPOData",
                     "path": "/sap/opu/odata/sap"
                 }
             },

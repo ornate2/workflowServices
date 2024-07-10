@@ -109,7 +109,7 @@ async function updateSAP(poNumber, status) {
 
 
 function scheduleJob() {
-    cron.schedule('*/20 * * * * *', async () => {
+    cron.schedule('0 0 * * *', async () => {
         console.log('Cron job is running every 20 seconds!');
 
         try {
