@@ -1,66 +1,51 @@
 <mvc:View controllerName="poformdata.workflowuimodule.controller.App"
-    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:html="http://www.w3.org/1999/xhtml" xmlns:uxap="sap.uxap" 	xmlns:forms="sap.ui.layout.form"  xmlns:layout="sap.ui.layout"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
     xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"  xmlns:ta="sap.ui.table" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified">
     <App id="app" height="90%">
      <pages>
              <Page >
         <content>
-         <IconTabBar id="DisposalAssetIconTabId"
-                    class="sapUiResponsiveContentPadding" select="IconTabBarSelect">
-                    <items>
-                        <IconTabFilter icon="sap-icon://request" id="data_Form"
-                            text="{i18n>savingForm}" key="PO_Form_Details" tooltip="{i18n>Request}"
-                            class="MasterDataIconTabBar" design="Vertical">
-        <f:SimpleForm editable="true" id="form_simple"
+        <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+		
+
+		<uxap:sections>
+			<uxap:ObjectPageSection titleUppercase="false" title="Sample Forms">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="PO Details" titleUppercase="false">
+						<uxap:blocks>
+							<forms:SimpleForm
+								title="Po Details"
+								
+								 editable="true" id="form_simple"
                                 layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
                                 labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
                                 emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0"
                                 columnsXL="2" columnsL="2" columnsM="2"
                                 singleContainerFullSize="false">
-                                <f:content>
-                                    <core:Title text="" class="remove-space" />
-                                
-                                      <Label text="{i18n>CreateSFA}" required="true"
-                                        class="sapMLabelNoText" />
-                                    <!-- <ComboBox id="Create_Saving"  editable="false"
-                                        change="NewCompanyCodeChange" items="{context>/PONumber}">
-                                        <core:Item key="{context>PONumber}" text="{context>CreateSaving}  {context>PONumber}" />
-                                    </ComboBox> -->
-                                      <Input id="Create_Saving" maxLength="50" value="{context>/CreateSaving}  {context>/PONumber}" editable="false"></Input>
-                                    <Label text="{i18n>Cluster}" required="true"
-                                        class="sapMLabelNoText" />
-                                        <ComboBox id="Cluster" 
-                                        change="NewCompanyCodeChange" items="{context>/Cluster}">
-                                        <core:Item key="{context>Cluster}" text="{context>Cluster}" />
-                                    </ComboBox>
-                                    
-                                    <Label text="{i18n>PONO}" required="true"
+                            <core:Title text="" class="remove-space" />
+								 <Label text="{i18n>PONO}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="AssetTitleId" maxLength="50" value="{context>/PONumber}" editable="false"></Input>
                                     <Label text="{i18n>POValue}" required="true"
                                         class="sapMLabelNoText" />
-                                    <Input id="POValue_" maxLength="50" editable="false" value="{context>/POValue}"></Input>
+                                    <Input id="POValue_" maxLength="50" type="Number" liveChange="onPOValueChange" editable="false" value="{context>/POValue}"></Input>
                                      <Label text="{i18n>POCurrency}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="POCurrency_" maxLength="50" editable="false" value="{context>/POCurrency}"></Input>
-                                        <Label text="{i18n>VendorName}" required="true"
+                                        <Label text="{i18n>PODate}" required="true"
+                                        class="sapMLabelNoText" />                                  
+                                       <DatePicker displayFormat="dd-MMM-yyyy" editable="false" placeholder="Starting Date" value="{context>/PODate}"
+                                        valueFormat="dd-MM-yyyy" id="PODate_" change="handlePoDatet">
+                                    </DatePicker>
+                                   <core:Title text="" class="remove-space" />
+                       
+                                     <Label text="{i18n>VendorName}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="Vendor_Name" value="{context>/VendorName}" editable="false" maxLength="50"></Input>
                                     <Label text="{i18n>VendorCode}" required="true"
                                         class="sapMLabelNoText" />
                                     <Input id="Vendor_Code" maxLength="50" editable="false" value="{context>/Vendor}"></Input>
-                                    <Label text="{i18n>Category}" required="true"
-                                        class="sapMLabelNoText" />
-                                        <ComboBox id="Category_" 
-                                        change="NewCompanyCodeChange" items="{context>/Category}">
-                                        <core:Item key="{context>Category}" text="{context>Category}" />
-                                    </ComboBox>
-                        <Label text="{i18n>ProjectDes}"
-                                        class="sapMLabelNoText" />
-                                    <TextArea id="Description" rows="3.5" maxLength="250"
-                                        showExceededText="true" value="{context>/ProjectDes}" />
-                                    
                                     
                             <Label text="{i18n>Region}" required="true"
                                         class="sapMLabelNoText" />
@@ -76,10 +61,95 @@
                                     <DatePicker displayFormat="dd-MMM-yyyy" editable="false" placeholder="End Date" value="{context>/EndDate}"
                                         valueFormat="dd-MM-yyyy" id="Saving_End" change="handleChangeEnd">
                                     </DatePicker>
+
+							</forms:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+					
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" showTitle="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Savings Details" titleUppercase="false">
+							<forms:SimpleForm
+								title="Savings Details"
+								
+								 editable="true" id="form_simple_2"
+                                layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+                                labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+                                emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0"
+                                columnsXL="2" columnsL="2" columnsM="2"
+                                singleContainerFullSize="false">
+                        <core:Title text="" class="remove-space" />
+								<Label text="{i18n>CreateSFA}" required="true"
+                                        class="sapMLabelNoText" />
+                                    <!-- <ComboBox id="Create_Saving"  editable="false"
+                                        change="NewCompanyCodeChange" items="{context>/PONumber}">
+                                        <core:Item key="{context>PONumber}" text="{context>CreateSaving}  {context>PONumber}" />
+                                    </ComboBox> -->
+                                      <!-- <Input id="Create_Saving" maxLength="50" value="{context>/CreateSaving}  {context>/PONumber}" editable="false"></Input> -->
+                                        <ComboBox id="Create_Saving" 
+                                        change="NewCompanyCodeChange" items="{context>/CreateSaving}">
+                                        <core:Item key="{context>CreateSaving}" text="{context>CreateSaving}" />
+                                    </ComboBox>
+                                    <Label text="{i18n>Cluster}" required="true"
+                                        class="sapMLabelNoText" />
+                                        <ComboBox id="Cluster" 
+                                        change="NewCompanyCodeChange" items="{context>/Cluster}">
+                                        <core:Item key="{context>Cluster}" text="{context>Cluster}" />
+                                    </ComboBox>
+                                     <Label text="{i18n>Category}" required="true"
+                                        class="sapMLabelNoText" />
+                                        <ComboBox id="Category_" 
+                                        change="NewCompanyCodeChange" items="{context>/Category}">
+                                        <core:Item key="{context>Category}" text="{context>Category}" />
+                                    </ComboBox>
+                                     <Label text="{i18n>SavingType}" 
+                                        class="sapMLabelNoText" />
+                                        <ComboBox id="saving_type" 
+                                        change="NewCompanyCodeChange" items="{context>/SavingType}">
+                                        
+                                        <core:Item key="{context>SavingType}" text="{context>SavingType}" />
+                                    </ComboBox>
+                                    
+                            <Label text="{i18n>LastYPONO}"  required="true"
+                                        class="sapMLabelNoText" />
+                                    <Input id="po_no" maxLength="50" value="{context>/LastYearPONo}"></Input>
+                                        <Label text="{i18n>LastYPOValue}"   required="true"
+                                        class="sapMLabelNoText" />
+                                    <Input id="po_value" maxLength="50" value="{context>/LastYearPOValue}"></Input>
+                                    <Label text="{i18n>LastYPOCurr}"  required="true"
+                                        class="sapMLabelNoText" />
+                                    <Input id="po_Currency" maxLength="50" value="{context>/LastYearPOCurr}"></Input>
+                                    <!-- new changes for upload file -->
+                                    <Label text="{i18n>ProjectDes}"
+                                        class="sapMLabelNoText" />
+                                    <TextArea id="Description" rows="3.5" maxLength="250"
+                                        showExceededText="true" value="{context>/ProjectDes}" />
+                            <core:Title text="" class="remove-space" />
+                            <Label text="{i18n>Qvalue}"
+                                        class="sapMLabelNoText" />
+                                        <Input id="Quated" maxLength="20" value="{context>/QuatedValue}"></Input>
+                                    
+                            <!-- <Label text="{i18n>Currency}" required="true"
+                                        class="sapMLabelNoText" />
+                                        <ComboBox id="Currency_po" 
+                                        change="NewCompanyCodeChange" items="">
+                                        <core:Item key="{context>/POCurrency}" text="{context>/POCurrency}" />
+                                    </ComboBox> -->
+                                    <Label text="{i18n>OValue}"
+                                        class="sapMLabelNoText" /> 
+                                        <Input id="Order_Value" maxLength="20" value="{context>/OrderValue}"></Input>
+                                    
+                                        <Label text="{i18n>Savings}" 
+                                        class="sapMLabelNoText" />
+                                    <Input id="po_Savings" maxLength="20"  value="{context>/Savings}"></Input>
+                                    <Label text="{i18n>SavingsPer}" 
+                                        class="sapMLabelNoText" />
+                                    <Input id="po_Savings_auto" maxLength="20"  value="{context>/SavingsPer}"></Input>
                                       <Label text=""
                                         class="sapMLabelNoText" />
-                                       
-                   <ui:Table
+                                     <ui:Table
                  id="table_column"
                 rows="{TableModel>/Tabledetails}" visible="false" visibleRowCount="4"  selectionMode="None"  >
                 <ui:extension>
@@ -126,61 +196,10 @@
                     </ui:Column>
                 </ui:columns>
             </ui:Table>
-                                    <core:Title text="" class="remove-space" />
-
-                                    
-                            <Label text="{i18n>LastYPONO}"  required="true"
-                                        class="sapMLabelNoText" />
-                                    <Input id="po_no" maxLength="50" value="{context>/LastYearPONo}"></Input>
-                                        <Label text="{i18n>LastYPOValue}"   required="true"
-                                        class="sapMLabelNoText" />
-                                    <Input id="po_value" maxLength="50" value="{context>/LastYearPOValue}"></Input>
-                                    <Label text="{i18n>LastYPOCurr}"  required="true"
-                                        class="sapMLabelNoText" />
-                                    <Input id="po_Currency" maxLength="50" value="{context>/LastYearPOCurr}"></Input>
-
-                                        <Label text="{i18n>Attachment}" 
-                                        class="sapMLabelNoText" />
-                                    <u:FileUploader
-			id="fileUploader"
-			name="myFileUpload"
-			uploadUrl="upload/"
-			tooltip="Upload your file to the local server"
-			uploadComplete="handleUploadComplete"/>
-		<!-- <Button
-			text="Upload File" visible="false"
-			press="handleUploadPress"/> -->
-
-                            <Label text="{i18n>Qvalue}"
-                                        class="sapMLabelNoText" />
-                                        <Input id="Quated" maxLength="50" value="{context>/QuatedValue}"></Input>
-                                    
-                            <!-- <Label text="{i18n>Currency}" required="true"
-                                        class="sapMLabelNoText" />
-                                        <ComboBox id="Currency_po" 
-                                        change="NewCompanyCodeChange" items="">
-                                        <core:Item key="{context>/POCurrency}" text="{context>/POCurrency}" />
-                                    </ComboBox> -->
-                                    <Label text="{i18n>OValue}"
-                                        class="sapMLabelNoText" /> 
-                                        <Input id="Order_Value" maxLength="50" value="{context>/OrderValue}"></Input>
-                                    
-                                        <Label text="{i18n>Savings}" 
-                                        class="sapMLabelNoText" />
-                                    <Input id="po_Savings" maxLength="50"  value="{context>/Savings}"></Input>
-                                    <Label text="{i18n>SavingsPer}" 
-                                        class="sapMLabelNoText" />
-                                    <Input id="po_Savings_auto" maxLength="50"  value="{context>/SavingsPer}"></Input>
-                                    <Label text="{i18n>SavingType}" 
-                                        class="sapMLabelNoText" />
-                                        <ComboBox id="saving_type" 
-                                        change="NewCompanyCodeChange" items="{context>/SavingType}">
-                                        <core:Item key="{context>SavingType}" text="{context>SavingType}" />
-                                    </ComboBox>
-                                    <Label text=""
+                                    <!-- <Label text=""
                                         class="sapMLabelNoText" />
                                         <CheckBox text="{i18n>SavingDistribution}"   id="savingdistribution" editable="true"
-										class="attached" selected="{context>/SavingsDistribution}" select="onClick"   width="140px" />
+										class="attached" selected="{context>/SavingsDistribution}" select="onClick"   width="140px" /> -->
                                     <!-- <Input id="po_Savings_Distribution" maxLength="50" enabled="true" visible="true"></Input> -->
                                      <Label text="{i18n>BFMValid}"  required="true"
                                         class="sapMLabelNoText" />
@@ -189,25 +208,29 @@
                                         <Label text="{i18n>YOYSav}" required="true"
                                         class="sapMLabelNoText" />
                                         <Input id="Saving-Function" maxLength="50"  value="{context>/YOYSavingFunction}"></Input>
-                                  </f:content>
-                            </f:SimpleForm>
-                             </IconTabFilter>
-                    </items>
-                </IconTabBar>
-         </content>
-         <!-- footer -->
-         <!-- <footer>
-					<OverflowToolbar>
-						<ToolbarSpacer />
-						<Button icon="sap-icon://curriculum"
-							text="{i18n>btnSubmit}" press="UpdateDocumentsPress"
-							class="buttonClass" type="Accept"></Button>
-						<Button icon="sap-icon://documents"
-							text="{i18n>btnReject}" press="ViewDocumentsPress"
-							type="Accept"></Button>
+
+							</forms:SimpleForm>
+					</uxap:ObjectPageSubSection >
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+      	<uxap:ObjectPageSection titleUppercase="false" showTitle="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Attachment" titleUppercase="false">
 						
-					</OverflowToolbar>
-				</footer> -->
+                                        <UploadCollection id="idMultiUploader_" maximumFilenameLength="55" maximumFileSize="3" multiple="true" sameFilenameAllowed="false"
+instantUpload="false" noDataDescription="{i18n>noDataDescriptiont}" change="onChangeEmailUpload" fileDeleted="onFileDeleted"
+filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatchMultiUpload"
+uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
+
+							
+					</uxap:ObjectPageSubSection >
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+        
+         </content>
+        
     </Page>
         </pages>
     </App>

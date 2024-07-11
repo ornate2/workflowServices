@@ -125,7 +125,7 @@ html.sap-desktop .sapContrast.sapMIBar.sapMFooter-CTX {
 
 .sapUiFormResGridCont {
     padding-bottom: 0 !important;
-    margin-top: -1rem !important;
+    margin-top: 0rem !important;
 }
 
 .empty_text_cls {

@@ -29,6 +29,19 @@ sap.ui.define(
           };
           var oModel = new sap.ui.model.json.JSONModel(data);
           this.getView().setModel(oModel, "TableModel");
+          this.getView().byId("POValue_").attachBrowserEvent("keydown", function(oEvent) {
+            var key = oEvent.charCode || oEvent.keyCode || 0;
+            return(key == 8 || key == 9 || key == 13 || key == 46 || key == 110 || key == 190 || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+          });
+          this.getView().byId("Quated").attachBrowserEvent("keydown", function(oEvent) {
+            var key = oEvent.charCode || oEvent.keyCode || 0;
+            return(key == 8 || key == 9 || key == 13 || key == 46 || key == 110 || key == 190 || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+          });
+          this.getView().byId("Order_Value").attachBrowserEvent("keydown", function(oEvent) {
+            var key = oEvent.charCode || oEvent.keyCode || 0;
+            return(key == 8 || key == 9 || key == 13 || key == 46 || key == 110 || key == 190 || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+          });
+
 
 
         },
@@ -64,9 +77,28 @@ sap.ui.define(
       // Handle case where dates are not valid
       console.error("Invalid dates selected");
   }
-          
+           
       },
+      formatInput: function(value){
+        let numericValue = value.replace(/[^\d.]/g, '');
 
+       
+        let integerValue = Math.floor(Number(numericValue));
+    
+      
+        return integerValue.toString();
+      },
+      onPOValueChange: function(){
+        var oInput = oEvent.getSource();
+        var sValue = oInput.getValue();
+
+        // Format the input value
+        var sFormattedValue = formatInput(sValue);
+
+        // Set the formatted value back to the input
+        oInput.setValue(sFormattedValue);
+      },
+      
       handleUploadComplete: function(oEvent) {
         var sResponse = oEvent.getParameter("response"),
           aRegexResult = /\d{4}/.exec(sResponse),

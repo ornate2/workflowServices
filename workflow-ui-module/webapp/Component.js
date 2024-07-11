@@ -115,8 +115,8 @@ sap.ui.define(
       var data_po = data.POCurrency;
       var data_CreateSaving = data.CreateSaving;
       var data_BFMValidation = data.BFMValidation;
-      var data_po = data.YOYSavingFunction;
-        if(data_po === "" && data_CreateSaving === "" && data_BFMValidation === ""){
+      var data_YOYSavingFunction = data.YOYSavingFunction;
+        if(data_po === "" || data_CreateSaving === "" || data_BFMValidation === "" || data_YOYSavingFunction === ""){
           var text = "Please fill the mandatory field";
 	    	  var Confirmation = "Confirmation";
 	    	  var btnOk = "ok";
