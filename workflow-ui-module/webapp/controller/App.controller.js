@@ -28,36 +28,16 @@ sap.ui.define(
                     "Saving": "40",
                     }],
           "clusterdetails": [
-                      {
-                        "Cluster": "Acquired Entity"  
-                      },
-                      {
-                        "Cluster": "CIS & PASS" 
-                      },
-                      {
-                        "Cluster": "CIS & PASS - APMEA" 
-                      },
-                      {
-                        "Cluster": "Geo Spend" 
-                      },
-                  {
-                        "Cluster": "Global Ops"
-                      },
-                  {
-                        "Cluster": "IBU"
-                      },
-                      {
-                        "Cluster": "IMG"
-                      },
-                  {
-                        "Cluster": "Manpower Contracting"
-                      },
-                      {
-                        "Cluster": "Support Services"
-                      },
-                  {
-                        "Cluster": "Training & Recruitment"
-                      }
+                      {"Cluster": "Acquired Entity" },
+                      { "Cluster": "CIS & PASS"  },
+                      {"Cluster": "CIS & PASS - APMEA" },
+                      {"Cluster": "Geo Spend" },
+                      {"Cluster": "Global Ops"   },
+                      {"Cluster": "IBU"},
+                      {"Cluster": "IMG"},
+                      { "Cluster": "Manpower Contracting"},
+                      { "Cluster": "Support Services"},
+                      { "Cluster": "Training & Recruitment" }
                     ],
             "Categorydetails": [
                       {"Category": "Alight" },
@@ -80,28 +60,28 @@ sap.ui.define(
                       {"Category": "IT Software"},
                       {"Category": "Legal" },
                       { "Category": "Logistics Services"},
-                       {"Category": "ME ITS" },
+                      {"Category": "ME ITS" },
                       { "Category": "ME SI"},
-                       {"Category": "Non Technical Contracting" },
+                      {"Category": "Non Technical Contracting" },
                       { "Category": "Opus"},
-                       {"Category": "PASS" },
+                      {"Category": "PASS" },
                       { "Category": "Professional Consulting"},
-                       { "Category": "Recruitment"},
-                        { "Category": "Rental - India"},
-                         { "Category": "Rental - Outside India"},
-                          { "Category": "Service - Marketing"},
-                           { "Category": "Service - Telecom"},
-                            { "Category": "Technical Contracting"},
-                             { "Category": "Training"},
-                              { "Category": "Transportation"},
-                              { "Category": "Travel"},
-                              { "Category": "ITI"},
-                              { "Category": "Infocrossing"},
-                              { "Category": "Metro"},
-                              { "Category": "4C"},
-                              { "Category": "Topcoder"},
-                               { "Category": "Leanswift"},
-                                { "Category": "Rational"}
+                      { "Category": "Recruitment"},
+                      { "Category": "Rental - India"},
+                      { "Category": "Rental - Outside India"},
+                      { "Category": "Service - Marketing"},
+                      { "Category": "Service - Telecom"},
+                      { "Category": "Technical Contracting"},
+                      { "Category": "Training"},
+                      { "Category": "Transportation"},
+                      { "Category": "Travel"},
+                      { "Category": "ITI"},
+                      { "Category": "Infocrossing"},
+                      { "Category": "Metro"},
+                      { "Category": "4C"},
+                      { "Category": "Topcoder"},
+                      { "Category": "Leanswift"},
+                      { "Category": "Rational"}
                     ],
        "CreateSavingdetails": [
                       {
@@ -127,14 +107,9 @@ sap.ui.define(
                       {
                         "SavingType": "Ledger Impact"}  
                       ]
-
           };
           var oModel = new sap.ui.model.json.JSONModel(data);
           this.getView().setModel(oModel, "TableModel");
-          // for cluster
-          // var oModelCluster = new sap.ui.model.json.JSONModel(cluster);
-          // this.getView().setModel(oModelCluster, "ClusterModel");
-
 
           this.getView().byId("POValue_").attachBrowserEvent("keydown", function(oEvent) {
             var key = oEvent.charCode || oEvent.keyCode || 0;
@@ -254,17 +229,6 @@ sap.ui.define(
         input03.setValue("Invalid value");
     }
       }
-  
-      // handleUploadPress: function() {
-      //   var oFileUploader = this.byId("fileUploader");
-      //   oFileUploader.checkFileReadable().then(function() {
-      //     oFileUploader.upload();
-      //   }, function(error) {
-      //     MessageToast.show("The file cannot be read. It may have changed.");
-      //   }).then(function() {
-      //     oFileUploader.clear();
-      //   });
-      // }
       });
     }
   );

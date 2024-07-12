@@ -43,29 +43,29 @@ sap.ui.define(
             this
           );
 
-          this.getInboxAPI().addAction(
-            {
-              action: "APPROVE",
-              label: "Approve",
-              type: "accept", // (Optional property) Define for positive appearance
-            },
-            function () {
-              this.completeTask(true);
-            },
-            this
-          );
+          // this.getInboxAPI().addAction(
+          //   {
+          //     action: "APPROVE",
+          //     label: "Approve",
+          //     type: "accept", // (Optional property) Define for positive appearance
+          //   },
+          //   function () {
+          //     this.completeTask(true);
+          //   },
+          //   this
+          // );
 
-          this.getInboxAPI().addAction(
-            {
-              action: "REJECT",
-              label: "Reject",
-              type: "reject", // (Optional property) Define for negative appearance
-            },
-            function () {
-              this.completeTask(false);
-            },
-            this
-          );
+          // this.getInboxAPI().addAction(
+          //   {
+          //     action: "REJECT",
+          //     label: "Reject",
+          //     type: "reject", // (Optional property) Define for negative appearance
+          //   },
+          //   function () {
+          //     this.completeTask(false);
+          //   },
+          //   this
+          // );
         },
 
         setTaskModels: function () {

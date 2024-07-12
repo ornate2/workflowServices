@@ -129,7 +129,7 @@
                             <core:Title text="" class="remove-space" />
                             <Label text="{i18n>Qvalue}"
                                         class="sapMLabelNoText" />
-                                        <Input id="Quated" maxLength="20" editable="false"  value="{context>/QuatedValue}" change="onCalculatePercentageDifference"></Input>
+                                        <Input id="Quated" maxLength="20" editable="true"  value="{context>/QuatedValue}" change="onCalculatePercentageDifference"></Input>
                                     
                             <!-- <Label text="{i18n>Currency}" required="true"
                                         class="sapMLabelNoText" />
@@ -139,7 +139,7 @@
                                     </ComboBox> -->
                                     <Label text="{i18n>OValue}"
                                         class="sapMLabelNoText" /> 
-                                        <Input id="Order_Value" maxLength="20" editable="false"  value="{context>/OrderValue}" change="onCalculatePercentageDifference"></Input>
+                                        <Input id="Order_Value" maxLength="20" editable="true"  value="{context>/OrderValue}" change="onCalculatePercentageDifference"></Input>
                                     
                                         <Label text="{i18n>Savings}" 
                                         class="sapMLabelNoText" />
@@ -201,13 +201,15 @@
                                         <CheckBox text="{i18n>SavingDistribution}"   id="savingdistribution" editable="true"
 										class="attached" selected="{context>/SavingsDistribution}" select="onClick"   width="140px" /> -->
                                     <!-- <Input id="po_Savings_Distribution" maxLength="50" enabled="true" visible="true"></Input> -->
-                                     <Label text="{i18n>BFMValid}"  required="true"
+
+                                    
+                                     <!-- <Label text="{i18n>BFMValid}"  required="true"
                                         class="sapMLabelNoText" />
                                         <Input id="bfmValidation" maxLength="50"  value="{context>/BFMValidation}"></Input>
                                    
                                         <Label text="{i18n>YOYSav}" required="true"
                                         class="sapMLabelNoText" />
-                                        <Input id="Saving-Function" maxLength="50"  value="{context>/YOYSavingFunction}"></Input>
+                                        <Input id="Saving-Function" maxLength="50"  value="{context>/YOYSavingFunction}"></Input> -->
 
 							</forms:SimpleForm>
 					</uxap:ObjectPageSubSection >
