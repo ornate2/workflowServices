@@ -148,6 +148,12 @@ sap.ui.define(
 	                }
 	            });
 				informationDialog.open();
+        } else {
+          // Retrieve the button using the manifest defined ID
+          var oButton = this.byId("submitdata");
+          if (oButton) {
+            oButton.setEnabled(false); // Disable the button
+          }
         }
         },
 

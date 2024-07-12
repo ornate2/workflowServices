@@ -49,7 +49,7 @@
                                     
                             <Label text="{i18n>Region}" required="true"
                                         class="sapMLabelNoText" />
-                                    <Input id="Region" maxLength="50" value="{context>/Region}"></Input>
+                                    <Input id="Region" maxLength="50" value="{context>/Region}" editable="false" ></Input>
 
                                     <Label text="{i18n>Sstartdate}"
                                         class="sapMLabelNoText" />
@@ -89,27 +89,27 @@
                                     </ComboBox> -->
                                       <!-- <Input id="Create_Saving" maxLength="50" value="{context>/CreateSaving}  {context>/PONumber}" editable="false"></Input> -->
                                         <ComboBox id="Create_Saving" 
-                                        change="NewCompanyCodeChange" items="{context>/CreateSaving}">
-                                        <core:Item key="{context>CreateSaving}" text="{context>CreateSaving}" />
+                                        change="NewCompanyCodeChange" items="{TableModel>/CreateSavingdetails}">
+                                        <core:Item key="{TableModel>CreateDetails}" text="{TableModel>CreateDetails}  {TableModel>CreateSaving}" />
                                     </ComboBox>
                                     <Label text="{i18n>Cluster}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Cluster" 
-                                        change="NewCompanyCodeChange" items="{context>/Cluster}">
-                                        <core:Item key="{context>Cluster}" text="{context>Cluster}" />
+                                        change="NewCompanyCodeChange" items="{TableModel>/clusterdetails}">
+                                        <core:Item key="{TableModel>Cluster}" text="{TableModel>Cluster}" />
                                     </ComboBox>
                                      <Label text="{i18n>Category}" required="true"
                                         class="sapMLabelNoText" />
                                         <ComboBox id="Category_" 
-                                        change="NewCompanyCodeChange" items="{context>/Category}">
-                                        <core:Item key="{context>Category}" text="{context>Category}" />
+                                        change="NewCompanyCodeChange" items="{TableModel>/Categorydetails}">
+                                        <core:Item key="{TableModel>Category}" text="{TableModel>Category}" />
                                     </ComboBox>
                                      <Label text="{i18n>SavingType}" 
                                         class="sapMLabelNoText" />
                                         <ComboBox id="saving_type" 
-                                        change="NewCompanyCodeChange" items="{context>/SavingType}">
+                                        change="NewCompanyCodeChange" items="{TableModel>/SavingTypedetails}">
                                         
-                                        <core:Item key="{context>SavingType}" text="{context>SavingType}" />
+                                        <core:Item key="{TableModel>SavingType}" text="{TableModel>SavingType}" />
                                     </ComboBox>
                                     
                             <Label text="{i18n>LastYPONO}"  required="true"
@@ -129,7 +129,7 @@
                             <core:Title text="" class="remove-space" />
                             <Label text="{i18n>Qvalue}"
                                         class="sapMLabelNoText" />
-                                        <Input id="Quated" maxLength="20" value="{context>/QuatedValue}"></Input>
+                                        <Input id="Quated" maxLength="20" editable="false"  value="{context>/QuatedValue}" change="onCalculatePercentageDifference"></Input>
                                     
                             <!-- <Label text="{i18n>Currency}" required="true"
                                         class="sapMLabelNoText" />
@@ -139,14 +139,14 @@
                                     </ComboBox> -->
                                     <Label text="{i18n>OValue}"
                                         class="sapMLabelNoText" /> 
-                                        <Input id="Order_Value" maxLength="20" value="{context>/OrderValue}"></Input>
+                                        <Input id="Order_Value" maxLength="20" editable="false"  value="{context>/OrderValue}" change="onCalculatePercentageDifference"></Input>
                                     
                                         <Label text="{i18n>Savings}" 
                                         class="sapMLabelNoText" />
-                                    <Input id="po_Savings" maxLength="20"  value="{context>/Savings}"></Input>
+                                    <Input id="po_Savings" maxLength="20" editable="false"   value="{context>/Savings}"></Input>
                                     <Label text="{i18n>SavingsPer}" 
                                         class="sapMLabelNoText" />
-                                    <Input id="po_Savings_auto" maxLength="20"  value="{context>/SavingsPer}"></Input>
+                                    <Input id="po_Savings_auto" maxLength="20" editable="false"  value="{context>/SavingsPer}"></Input>
                                       <Label text=""
                                         class="sapMLabelNoText" />
                                      <ui:Table
